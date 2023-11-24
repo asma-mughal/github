@@ -3,13 +3,12 @@ import './home.scss';
 import Sidebar from '../../components/sidebar/Sidebar';
 import Navbar from '../../components/navbar/Navbar';
 import Widget from '../../components/widget/Widget';
-import Featured from '../../components/featured/Featured';
-import Chart from '../../components/chart/Chart';
 import { hero } from '../../assets';
 import Select from 'react-select';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import Footer from '../../components/Footer/Footer';
+import Chart from '../../components/chart/Chart';
 const Home = () => {
   const options = [
     { value: 'option1', label: '7 days' },
@@ -153,9 +152,16 @@ const Home = () => {
           <img src={hero} alt="Your Image" className="w-auto h-auto max-w-full" />
         </div>
       </div>
+      <div className="flex mt-10 flex-row space-x-4">
+  <Chart title="Project Views" aspect={2 / 1} />
+  <Chart title="Job Advertisement views" aspect={2 / 1} />
+  <Chart title="Application received" aspect={2 / 1} />
+  <Chart title="Expressions received" aspect={2 / 1} />
+</div>
     </div>
+   
   </div>
-
+ 
  <Footer />
   </>
   )
