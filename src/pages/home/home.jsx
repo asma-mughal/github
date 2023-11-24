@@ -9,6 +9,7 @@ import { hero } from '../../assets';
 import Select from 'react-select';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import Footer from '../../components/Footer/Footer';
 const Home = () => {
   const options = [
     { value: 'option1', label: '7 days' },
@@ -42,6 +43,7 @@ const Home = () => {
   };
   
   return (
+    <>
     <div className="home font-sans bg-primary">
     <Sidebar />
     <div className="homeContainer bg-primary ">
@@ -147,16 +149,15 @@ const Home = () => {
       </div>
           </div>
         </div>
-
-        {/* Right side */}
         <div className="w-full md:w-1/2 flex justify-center items-center overflow-hidden">
           <img src={hero} alt="Your Image" className="w-auto h-auto max-w-full" />
         </div>
       </div>
-
-      {/* Charts */}
     </div>
   </div>
+
+ <Footer />
+  </>
   )
 }
 

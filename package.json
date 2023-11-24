@@ -6,6 +6,8 @@
     "@emotion/styled": "^11.11.0",
     "@ericz1803/react-google-calendar": "^4.3.1",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
+    "@headlessui/react": "^1.7.17",
+    "@heroicons/react": "^2.0.18",
     "@mui/icons-material": "^5.14.18",
     "@mui/styles": "^5.14.18",
     "@mui/x-data-grid": "^6.18.2",
