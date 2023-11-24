@@ -39,12 +39,13 @@ const Home = () => {
       color: 'white',
     }),
   };
+  
   return (
     <div className="home font-sans bg-primary">
     <Sidebar />
-    <div className="homeContainer">
+    <div className="homeContainer bg-primary ">
       <Navbar />
-      <div className="flex flex-col md:flex-row mt-10">
+      <div className="flex flex-col md:flex-row mt-10 bg-primary ">
       {/* Left side */}
       <div className="w-full md:w-1/2 p-4">
          {/* Headings */}
@@ -75,12 +76,12 @@ const Home = () => {
   <div class="w-full md:w-1/2 lg:w-5/12">
     <Widget title="Return visitors"  subtitle={"1500"} 
     value={30}
-    colorCard="green"
+    colorCard="yellow"
     />
   </div>
   <div class="w-full md:w-1/2 lg:w-5/12">
     <Widget title="New visitors"  subtitle={"2000"}
-    colorCard="pink"
+    colorCard="yellow"
        value={25}
     />
   </div>
@@ -89,7 +90,7 @@ const Home = () => {
       </div>
 
       {/* Right side */}
-      <div className="w-full md:w-1/2 bg-primary">
+      <div className="w-full sm:w-1/2 xs:w-1/2 md:w-1/2 bg-primary">
         <img
           src={hero}
           alt="Your Image"

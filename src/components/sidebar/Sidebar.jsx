@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState } from 'react';
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import CreditCardIcon from "@mui/icons-material/CreditCard";
@@ -14,21 +14,29 @@ import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import ChatIcon from '@mui/icons-material/Chat';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import MenuIcon from '@mui/icons-material/Menu';
+
+
 const Sidebar = () => {
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setSidebarOpen(!isSidebarOpen);
+  };
   return (
     <div className="flex">
-    <div className="sidebar bg-secondary-blue flex-1 border-r
-     min-h-screen w-48 text-center" >
+    <div className={`sidebar bg-secondary-blue flex-1 border-r min-h-screen w-48 text-center ${isSidebarOpen ? '' : 'hidden md:block'}`}>
+      {/* Sidebar content */}
       <div className="top h-16 flex items-center justify-center">
         <Link to="/" className="no-underline">
           <span className="logo text-sm text-white">Logo Here</span>
         </Link>
       </div>
-    
+
       <div className="flex justify-center items-center">
-        <ul className="list-none  m-0 p-0">
+         <ul className="list-none  m-0 p-0">
           <Link to="/" className="no-underline">
-          <li className="flex items-center py-2mb-2">
+          <li className="flex items-center py-2 mb-2">
             <DashboardIcon style={{ fontSize: 15, color:'white' }} />
             <span className="text-sm text-white ml-2">My Account</span>
           </li>
@@ -94,6 +102,9 @@ const Sidebar = () => {
           </li>
         </ul>
       </div>
+    </div>
+    <div className="md:hidden p-2" onClick={toggleSidebar} >
+      <MenuIcon style={{ fontSize: 19, color: 'white', }} />
     </div>
   </div>
   
