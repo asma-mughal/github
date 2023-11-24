@@ -28,7 +28,7 @@ const Sidebar = () => {
       <div className="flex justify-center items-center">
         <ul className="list-none  m-0 p-0">
           <Link to="/" className="no-underline">
-          <li className="flex items-center py-2  hover:bg-gray-200 mb-2">
+          <li className="flex items-center py-2mb-2">
             <DashboardIcon style={{ fontSize: 15, color:'white' }} />
             <span className="text-sm text-white ml-2">My Account</span>
           </li>

@@ -1,98 +1,34 @@
-import React from 'react'
-import "./widget.scss";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
-import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
-import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
-const Widget = ({type}) => {
-  //temporary
-  const amount = 100;
-  const diff = 20;
-  let data;
-  switch (type) {
-    case "user":
-      data = {
-        title: "USERS",
-        isMoney: false,
-        link: "All Users",
-        icon: (
-          <PersonOutlinedIcon
-            className="icon"
-            style={{
-              color: "crimson",
-              backgroundColor: "rgba(255, 0, 0, 0.2)",
-            }}
-          />
-        ),
-      };
-      break;
-    case "order":
-      data = {
-        title: "RFPS",
-        isMoney: false,
-        link: "All RFPs",
-        icon: (
-          <ShoppingCartOutlinedIcon
-            className="icon"
-            style={{
-              backgroundColor: "rgba(218, 165, 32, 0.2)",
-              color: "goldenrod",
-            }}
-          />
-        ),
-      };
-      break;
-    case "earning":
-      data = {
-        title: "TRENDING",
-        isMoney: true,
-        link: "Trending RFPs",
-        icon: (
-          <MonetizationOnOutlinedIcon
-            className="icon"
-            style={{ backgroundColor: "rgba(0, 128, 0, 0.2)", color: "green" }}
-          />
-        ),
-      };
-      break;
-    case "balance":
-      data = {
-        title: "USEFUL",
-        link: "Useful RFPs",
-        icon: (
-          <AccountBalanceWalletOutlinedIcon
-            className="icon"
-            style={{
-              backgroundColor: "rgba(128, 0, 128, 0.2)",
-              color: "purple",
-            }}
-          />
-        ),
-      };
-      break;
-    default:
-      break;
-  }
-
+import Card from '../Card';
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import CloudCircle from '@mui/icons-material/CloudCircle';
+const Widget = ({ icon, title, subtitle,value,colorCard }) => {
   return (
-    <div className="widget">
-    <div className="left">
-      <span className="title">{data.title}</span>
-      <span className="counter"> {amount}
-      </span>
-      <span className="link">{data.link}</span>
-    </div>
-    <div className="right">
-      <div className="percentage positive">
-        <KeyboardArrowUpIcon />
-        {diff} %
+    <Card extra="!flex-row flex-grow items-center rounded-[20px]">
+      <div className="ml-[18px] flex h-[90px] w-auto flex-row items-center">
+        <div className="rounded-full  p-4 dark:bg-navy-700">
+          <span className="flex items-center text-brand-500  p-3 rounded-md
+          dark:text-white"
+          style={{
+            backgroundColor:'#3D4268'
+          }}
+          >
+            <AccountCircleOutlinedIcon style={{ fontSize: 19, color:'white' }} />
+          </span>
+        </div>
       </div>
-      {data.icon}
-    </div>
+
+      <div className="h-50 ml-1 flex w-auto flex-col justify-center">
+    <p className="text-xs text-white">{title}</p>
+    <h4 className="text-xs font-semibold mt-1 text-white dark:text-white">
+      {subtitle} <CloudCircle style={{ fontSize: 14, marginLeft: '4px', color:`${colorCard}` }} />
+      {' '}
+    <span style={{
+      color:`${colorCard}`
+    }}>{"+" + value + "%"}</span>
+    </h4>
   </div>
+    </Card>
+  );
+};
 
-  )
-}
-
-export default Widget
+export default Widget;
