@@ -1,11 +1,18 @@
-import logo from './logo.svg';
+import { useEffect } from 'react';
 import './App.css';
+import { Route,Routes, BrowserRouter } from 'react-router-dom';
 
+import Home from './pages/home/home';
 function App() {
+ 
   return (
-    <div className="App">
-      
-    </div>
+    <BrowserRouter>
+    <Routes>
+      <Route path="/">
+      <Route index element={<Home />} />
+      </Route>
+    </Routes>
+  </BrowserRouter>
   );
 }
 
