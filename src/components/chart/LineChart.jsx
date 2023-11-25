@@ -2,9 +2,9 @@ import React, {useState} from "react";
 import { Line } from "react-chartjs-2";
 import { UserDataLine } from "../../assets/data";
 
-function LineChart({ label , color }) {
+function LineChart({ label , color, data }) {
   const [userData, setUserData] = useState({
-    labels: UserDataLine.map((data) => data.year),
+    labels: data.map((data) => data.year),
     datasets: [
       {
         label: "7 days",

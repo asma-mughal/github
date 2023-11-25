@@ -12,6 +12,8 @@ import Chart from '../../components/chart/Chart';
 import BarChart from '../../components/chart/BarChart';
 import { FaEye } from "react-icons/fa"; 
 import LineChart from '../../components/chart/LineChart';
+import PieChart from '../../components/chart/PieChart';
+import { UserDataLine, UserDataLine2 } from '../../assets/data';
 const Home = () => {
   const options = [
     { value: 'option1', label: '7 days' },
@@ -166,31 +168,35 @@ const Home = () => {
     <div className="flex items-center">
       <h2 className="text-sm text-white mb-3 mr-2">Job Advertisments Views</h2>
     </div>
-    <LineChart color={"#E65D60"}/>
+    <LineChart color={"#E65D60"} data={UserDataLine}/>
   </div>
   <div style={{ flex: 1, maxWidth: '24%',  padding: '0 9px' }}>
     <div className="flex items-center">
       <h2 className="text-sm text-white mb-3 mr-2">Applications Received</h2>
     </div>
-    <LineChart color={"#DDB02D"} />
+    <LineChart color={"#DDB02D"} data={UserDataLine} />
   </div>
   <div style={{ flex: 1, maxWidth: '24%',  padding: '0 9px'}}>
     <div className="flex items-center">
       <h2 className="text-sm text-white mb-3 mr-2">Expressions of interest Received</h2>
     </div>
-    <LineChart color={"#836BCD"} />
+    <LineChart color={"#836BCD"} data={UserDataLine} />
   </div>
 </div>
-<div className="flex justify-center items-center h-screen bg-gray-100">
-      <div className="flex w-full max-w-screen-lg overflow-hidden shadow-lg rounded-md">
-        <div className="w-1/2 p-4">
-          lien
-        </div>
-        <div className="w-1/2 p-4">
-          pie
-        </div>
-      </div>
+<div className="flex flex-col md:flex-row w-full">
+  <div className="w-full md:w-1/3 bg-secondary-blue">
+    <div className="flex items-center">
+      <h2 className="text-sm text-white mb-3 mr-2">Track your Recruitment Activities</h2>
     </div>
+    <LineChart color={"#1B54A9"} data={UserDataLine2}/>
+  </div>
+  <div className="w-full md:w-1/3 md:ml-auto bg-secondary-blue rounded-md ml-2 mr-24 flex items-center">
+    <div className="flex items-center">
+      <h2 className="text-sm text-white mb-3 mr-2">{/* Empty for centering */}</h2>
+    </div>
+    <PieChart />
+  </div>
+</div>
 </div>
 
     </div>
