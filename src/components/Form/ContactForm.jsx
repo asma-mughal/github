@@ -8,13 +8,15 @@ const ContactForm = () => {
   return (
     <section className="max-w-4xl p-6 mx-auto bg-primary rounded-md shadow-md dark:bg-gray-800 mt-20">
        <div class="flex items-center mb-4">
-       <ContactPersonIcon fontSize="small" className=" mr-2 bg-secondary-yellow" />
+       <ContactPersonIcon fontSize="small" style={{
+      color :'#E7B82F',
+    }} className=" mr-2 " />
         <h2 className="text-xl text-secondary-yellow capitalize dark:text-gray-200">Contact Information</h2>
     </div>
     <form>
-        <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
             <div>
-                <label class="text-white dark:text-gray-200" for="username">First Name</label>
+                <label className="text-white dark:text-gray-200" for="username">First Name</label>
                 <input id="username" type="text" className="block w-full px-4 py-2 mt-2
                  text-white bg-primary border border-gray-300 rounded-md
                     focus:outline-none focus:ring" />
@@ -83,56 +85,52 @@ const ContactForm = () => {
         </div>
     </form>
     <div class="flex items-center mt-8 mb-4">
-    <BusniessIcon fontSize="large" className="mb-2 mr-2" />
-        <h2 class="text-2xl font-bold text-white dark:text-gray-200">Business Information</h2>
+    <BusniessIcon fontSize="small" style={{
+      color :'#E7B82F',
+    }} className=" mr-2 " />
+        <h2 className="text-xl  text-secondary-yellow dark:text-gray-200">Business Information</h2>
     </div>
     <form>
         <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
             <div>
-                <label class="text-white dark:text-gray-200" for="username">First Name</label>
-                <input id="username" type="text" class="block w-full px-4 py-2 mt-2
-                 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800
-                  dark:text-gray-300 dark:border-gray-600 focus:border-blue-500
-                   dark:focus:border-blue-500 focus:outline-none focus:ring" />
+                <label class="text-white dark:text-gray-200" for="username">Busniess Name</label>
+                <input id="username" type="text"className="block w-full px-4 py-2 mt-2
+                 text-white bg-primary border border-gray-300 rounded-md
+                    focus:outline-none focus:ring"  />
             </div>
 
             <div>
                 <label class="text-white dark:text-gray-200" for="emailAddress">Family Name</label>
-                <input id="emailAddress" type="text" class="block w-full px-4 py-2 mt-2 
-                text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800
-                 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 
-                 dark:focus:border-blue-500 focus:outline-none focus:ring" />
+                <input id="emailAddress" type="text"className="block w-full px-4 py-2 mt-2
+                 text-white bg-primary border border-gray-300 rounded-md
+                    focus:outline-none focus:ring"  />
             </div>
 
             <div>
                 <label class="text-white dark:text-gray-200" for="password">Preferred Greetings</label>
-                <input id="text" type="text" class="block w-full px-4 py-2 mt-2
-                 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800
-                  dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 
-                  dark:focus:border-blue-500 focus:outline-none focus:ring"/>
+                <input id="text" type="text"className="block w-full px-4 py-2 mt-2
+                 text-white bg-primary border border-gray-300 rounded-md
+                    focus:outline-none focus:ring" />
             </div>
 
             <div>
                 <label class="text-white dark:text-gray-200" for="passwordConfirmation">Job Title </label>
                 <input id="passwordConfirmation" type="password"
-                 class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border
-                  border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300
-                   dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500
-                    focus:outline-none focus:ring" />
+                className="block w-full px-4 py-2 mt-2
+                text-white bg-primary border border-gray-300 rounded-md
+                   focus:outline-none focus:ring"  />
             </div>
             <div>
                 <label class="text-white dark:text-gray-200" for="passwordConfirmation">Email Address</label>
-                <input id="emailAddress" type="email" class="block w-full px-4 py-2 mt-2 
-                text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800
-                 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 
-                 dark:focus:border-blue-500 focus:outline-none focus:ring" />
+                <input id="emailAddress" type="email" className="block w-full px-4 py-2 mt-2
+                 text-white bg-primary border border-gray-300 rounded-md
+                    focus:outline-none focus:ring"  />
             </div>
             <div>
                 <label class="text-white dark:text-gray-200" for="passwordConfirmation">Mobile Number</label>
-                <input id="range" type="range" class="block w-full py-2 mt-2 text-gray-700 
-                bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300
-                 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none
-                  focus:ring" />
+                <input id="range" type="range"className="block w-full px-4 py-2 mt-2
+                 text-white bg-primary border border-gray-300 rounded-md
+                    focus:outline-none focus:ring"  />
             </div>
            
           
