@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './home.scss';
 import Sidebar from '../../components/sidebar/Sidebar';
 import Navbar from '../../components/navbar/Navbar';
@@ -9,6 +9,9 @@ import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import Footer from '../../components/Footer/Footer';
 import Chart from '../../components/chart/Chart';
+import BarChart from '../../components/chart/BarChart';
+import { FaEye } from "react-icons/fa"; 
+import LineChart from '../../components/chart/LineChart';
 const Home = () => {
   const options = [
     { value: 'option1', label: '7 days' },
@@ -40,7 +43,7 @@ const Home = () => {
       color: 'white',
     }),
   };
-  
+ 
   return (
     <>
     <div className="home font-sans bg-primary">
@@ -152,17 +155,47 @@ const Home = () => {
           <img src={hero} alt="Your Image" className="w-auto h-auto max-w-full" />
         </div>
       </div>
-      <div className="flex mt-10 flex-row space-x-4">
-  <Chart title="Project Views" aspect={2 / 1} />
-  <Chart title="Job Advertisement views" aspect={2 / 1} />
-  <Chart title="Application received" aspect={2 / 1} />
-  <Chart title="Expressions received" aspect={2 / 1} />
-</div>
+      <div className="flex mt-10 ">
+  <div style={{ flex: 1, maxWidth: '24%' ,padding: '0 9px' }}>
+    <div className="flex items-center">
+      <h2 className="text-sm text-white mb-3 mr-2">Project Views</h2>
     </div>
-   
+    <BarChart />
   </div>
- 
- <Footer />
+  <div style={{ flex: 1, maxWidth: '24%' ,  padding: '0 9px'}}>
+    <div className="flex items-center">
+      <h2 className="text-sm text-white mb-3 mr-2">Job Advertisments Views</h2>
+    </div>
+    <LineChart color={"#E65D60"}/>
+  </div>
+  <div style={{ flex: 1, maxWidth: '24%',  padding: '0 9px' }}>
+    <div className="flex items-center">
+      <h2 className="text-sm text-white mb-3 mr-2">Applications Received</h2>
+    </div>
+    <LineChart color={"#DDB02D"} />
+  </div>
+  <div style={{ flex: 1, maxWidth: '24%',  padding: '0 9px'}}>
+    <div className="flex items-center">
+      <h2 className="text-sm text-white mb-3 mr-2">Expressions of interest Received</h2>
+    </div>
+    <LineChart color={"#836BCD"} />
+  </div>
+</div>
+<div className="flex justify-center items-center h-screen bg-gray-100">
+      <div className="flex w-full max-w-screen-lg overflow-hidden shadow-lg rounded-md">
+        <div className="w-1/2 p-4">
+          lien
+        </div>
+        <div className="w-1/2 p-4">
+          pie
+        </div>
+      </div>
+    </div>
+</div>
+
+    </div>
+
+    <Footer />
   </>
   )
 }

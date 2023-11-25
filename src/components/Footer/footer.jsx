@@ -2,12 +2,10 @@ import React,{ Fragment} from 'react'
 import { Menu, Transition } from '@headlessui/react';
 import { lang,english } from '../../assets/index';
 const Footer = () => {
-	function classNames(...classes) {
-		return classes.filter(Boolean).join(' ')
-	  }
-  return (
-    <footer className="px-4 divide-y bg-secondary-blue text-white dark:text-gray-100">
-	<div className="container flex flex-col justify-between py-10 mx-auto space-y-8 lg:flex-row lg:space-y-0">
+
+  return ( 
+	 <footer className="px-0 divide-y w-full bg-secondary-blue text-white dark:text-gray-100">
+	<div className="container flex flex-col bg-secondary-blue justify-between py-10 mx-auto space-y-8 lg:flex-row lg:space-y-0">
 		<div className="lg:w-1/3">
 		<div className="sm:col-span-2">
           <a
@@ -265,6 +263,7 @@ Film Schools
 	</div>
 	<div className="py-6 text-sm text-center dark:text-gray-400">Actors Index Pty Ltd. ABN 123456789 Copyright ©2024. All Rights Reserved. Sitemap.</div>
 </footer>
+  
   )
 }
 
