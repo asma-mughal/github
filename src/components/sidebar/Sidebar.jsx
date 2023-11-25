@@ -3,11 +3,9 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import DuoIcon from '@mui/icons-material/Duo';
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
 import { Link } from "react-router-dom";
-import './sidebar.css'
 import EventIcon from '@mui/icons-material/Event';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
@@ -15,6 +13,7 @@ import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import ChatIcon from '@mui/icons-material/Chat';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import MenuIcon from '@mui/icons-material/Menu';
+import { logo1 } from '../../assets';
 
 
 const Sidebar = () => {
@@ -29,7 +28,7 @@ const Sidebar = () => {
       {/* Sidebar content */}
       <div className="top h-16 flex items-center justify-center">
         <Link to="/" className="no-underline">
-          <span className="logo text-sm text-white">Logo Here</span>
+        <img src={logo1} alt="Your Logo" className="h-8" />
         </Link>
       </div>
 

@@ -39,7 +39,7 @@ const Section1 = () => {
     <section className="flex-grow p-6 bg-primary">
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Left Div */}
-        <div className=" p-6 rounded-md shadow-md">
+        <div className="p-6 rounded-md shadow-md">
         <div className="flex items-center mb-4 ">
             <h1 className="text-lg font-semibold text-white">Recent stats</h1>
             <div className="ml-auto">
@@ -72,7 +72,7 @@ const Section1 = () => {
     />
     </div>
                 </div>
-                <div className="flex flex-col items-start  mt-10">
+                <div className="flex flex-col  items-start  mt-10">
           <h2 className="text-lg font-semibold text-white mb-2">Activity these days</h2>
       <div className="flex justify-center items-center">
         <div className="flex flex-col items-center mx-4">

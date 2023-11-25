@@ -93,32 +93,9 @@ export const UserData = [
     },
     {
       id: 5,
-      year: 'SAT',
+      year: 'FRI',
       userGain: 5,
       userLost: 234,
     },
-    {
-        id: 5,
-        year: 'SUN',
-        userGain: 55,
-        userLost: 234,
-      },
-      {
-        id: 5,
-        year: 'MON',
-        userGain: 9,
-        userLost: 234,
-      },
-      {
-        id: 5,
-        year: 'TUE',
-        userGain: 1,
-        userLost: 234,
-      },
-      {
-        id: 5,
-        year: 'WED',
-        userGain: 6,
-        userLost: 234,
-      },
   ];
+

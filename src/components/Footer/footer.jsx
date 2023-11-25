@@ -4,7 +4,7 @@ import { lang,english } from '../../assets/index';
 const Footer = () => {
 
   return ( 
-	 <footer className="px-0 divide-y w-full bg-secondary-blue text-white dark:text-gray-100">
+	 <footer className="p-6 lg:p-0 divide-y w-full bg-secondary-blue text-white dark:text-gray-100">
 	<div className="container flex flex-col bg-secondary-blue justify-between py-10 mx-auto space-y-8 lg:flex-row lg:space-y-0">
 		<div className="lg:w-1/3">
 		<div className="sm:col-span-2">

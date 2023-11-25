@@ -11,7 +11,7 @@ function LineChart({ label , color, data }) {
         data: UserDataLine.map((data) => data.userGain),
         backgroundColor: [
           "#fff",
-          "#fff",
+          "#ff",
           "#fff",
           "#fff",
           "#fff",

@@ -29,7 +29,7 @@ const Section2 = () => {
       </div>
       <div className=" rounded-md shadow-md">
       <div className="flex items-center">
-      <h2 className="text-sm text-white mb-3 mr-2">Expressions of interest Received</h2>
+      <h2 className="text-sm text-white mb-3 mr-2">Expressions  Received</h2>
     </div>
     <LineChart color={"#836BCD"} data={UserDataLine}/> 
         
