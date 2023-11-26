@@ -9,6 +9,7 @@ import { GeoNews } from '../../assets';
 import PencilIcon from '@mui/icons-material/PersonPinCircleRounded';
 import MemberShipIcon from '@mui/icons-material/CardMembership';
 import TickMarkIcon from '@mui/icons-material/CheckCircleOutline';
+import { isValidEmail, isValidPostalCode, isValidMobileNumber } from '../../assets/data';
 const ImageUploader = ({ label, id, text , handleImageUpload, loadingImg}) => {
   return (
     <div className="flex flex-col mr-4">
@@ -61,6 +62,44 @@ const ImageUploader = ({ label, id, text , handleImageUpload, loadingImg}) => {
 const ContactForm = () => {
   const [loading, setLoading] = useState(false);
   const [loadingImg, setLoadingImg] = useState(false);
+  
+  const [formErrors, setFormErrors] = useState({
+    accountInformation: {
+      username: '',
+      verifiedAccount: false,
+    },
+    contactInformation: {
+      firstName: '',
+      familyName: '',
+      preferredGreetings: '',
+      jobTitle: '',
+      emailAddress: '',
+      mobileNumber: '',
+      image: null, 
+    },
+    businessInformation: {
+      businessName: '',
+      country: '',
+      state: '',
+      postalCode: '',
+      businessCategory: '',
+      subCategory: '',
+      businessDescription: '',
+      images: [null, null],
+    },
+    securityInformation: {
+      securityPassword: '',
+    },
+    membershipInformation: {
+      bronze: false,
+      silver: false,
+      diamond: false,
+      gold: false,
+      renewMembership: false,
+      upgradeMembership: false,
+    },
+  
+  });
   const [formData, setFormData] = useState({
     accountInformation: {
       username: '',
@@ -125,8 +164,19 @@ const ContactForm = () => {
         setLoading(false);
       }, 2000); // Replace 2000 with the actual delay time for your image upload
     }
- 
   };
+  const handleCheckboxChange = (e) => {
+    const { checked } = e.target;
+    
+    setFormData((prevData) => ({
+      ...prevData,
+      accountInformation: {
+        ...prevData.accountInformation,
+        verifiedAccount: checked,
+      },
+    }));
+  };
+
   const handleImageUploadBusniess = (e, index) => {
     const file = e.target.files[0];
     if (file) {
@@ -150,11 +200,155 @@ const ContactForm = () => {
  
    
   };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(formData);
-   
+  const hasErrors = (errors) => {
+    return Object.values(errors).some((sectionErrors) =>
+      Object.values(sectionErrors).some((fieldError) => fieldError !== '')
+    );
   };
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setFormErrors({
+      accountInformation: {
+        username: '',
+        verifiedAccount: '',
+      },
+      contactInformation: {
+        firstName: '',
+        familyName: '',
+        preferredGreetings: '',
+        jobTitle: '',
+        emailAddress: '',
+        mobileNumber: '',
+        image: '',
+      },
+      businessInformation: {
+        businessName: '',
+        country: '',
+        state: '',
+        postalCode: '',
+        businessCategory: '',
+        subCategory: '',
+        businessDescription: '',
+        images: '',
+      },
+      securityInformation: {
+        securityPassword: '',
+      },
+      membershipInformation: {
+        bronze: '',
+        silver: '',
+        diamond: '',
+        gold: '',
+        renewMembership: '',
+        upgradeMembership: '',
+      },
+    });
+
+    if (!formData.accountInformation.username) {
+      setFormErrors((prevErrors) => ({
+        ...prevErrors,
+        accountInformation: { ...prevErrors.accountInformation, username: 'Username is required' },
+      }));
+    }
+    if (!formData.accountInformation.verifiedAccount) {
+      setFormErrors((prevErrors) => ({
+        ...prevErrors,
+        accountInformation: { ...prevErrors.accountInformation, verifiedAccount: 'Account verification is required' },
+      }));
+    }
+    if (!formData.contactInformation.firstName) {
+      setFormErrors((prevErrors) => ({
+        ...prevErrors,
+        contactInformation: { ...prevErrors.contactInformation, firstName: 'First name is required' },
+      }));
+    }
+  
+    if (!formData.contactInformation.familyName) {
+      setFormErrors((prevErrors) => ({
+        ...prevErrors,
+        contactInformation: { ...prevErrors.contactInformation, familyName: 'Family name is required' },
+      }));
+    }
+  
+    if (!formData.contactInformation.preferredGreetings) {
+      setFormErrors((prevErrors) => ({
+        ...prevErrors,
+        contactInformation: { ...prevErrors.contactInformation, preferredGreetings: 'Preferred greetings are required' },
+      }));
+    }
+    if (!formData.contactInformation.emailAddress || !isValidEmail(formData.contactInformation.emailAddress)) {
+      setFormErrors((prevErrors) => ({
+        ...prevErrors,
+        contactInformation: { ...prevErrors.contactInformation, emailAddress: 'Invalid email address' },
+      }));
+    }
+  
+    if (!formData.contactInformation.mobileNumber || 
+      !isValidMobileNumber(formData.contactInformation.mobileNumber)) {
+      setFormErrors((prevErrors) => ({
+        ...prevErrors,
+        contactInformation: { ...prevErrors.contactInformation, mobileNumber: 'Invalid mobile number' },
+      }));
+    }
+
+    if (!formData.businessInformation.businessName) {
+      setFormErrors((prevErrors) => ({
+        ...prevErrors,
+        businessInformation: { ...prevErrors.businessInformation, businessName: 'Business name is required' },
+      }));
+    }
+  
+    if (!formData.businessInformation.country) {
+      setFormErrors((prevErrors) => ({
+        ...prevErrors,
+        businessInformation: { ...prevErrors.businessInformation, country: 'Country is required' },
+      }));
+    } 
+    if (!formData.businessInformation.state) {
+      setFormErrors((prevErrors) => ({
+        ...prevErrors,
+        businessInformation: { ...prevErrors.businessInformation, state: 'State is required' },
+      }));
+    }
+  
+  
+    if (!formData.businessInformation.postalCode || !isValidPostalCode(formData.businessInformation.postalCode)) {
+      setFormErrors((prevErrors) => ({
+        ...prevErrors,
+        businessInformation: { ...prevErrors.postalCode, postalCode: 'Postal Code is required' },
+      }));
+    }
+    if (!formData.businessInformation.subCategory ) {
+      setFormErrors((prevErrors) => ({
+        ...prevErrors,
+        businessInformation: { ...prevErrors.subCategory, subCategory: 'Sub-Category is required' },
+      }));
+    }
+    if (!formData.businessInformation.businessDescription ) {
+      setFormErrors((prevErrors) => ({
+        ...prevErrors,
+        businessInformation: { ...prevErrors.businessDescription, businessDescription: 'Busniess description is required' },
+      }));
+    }
+    if (!formData.securityInformation.securityPassword) {
+      setFormErrors((prevErrors) => ({
+        ...prevErrors,
+        securityInformation: { ...prevErrors.securityInformation, securityPassword: 'Security password is required' },
+      }));
+    }
+    if (!formData.membershipInformation.bronze && !formData.membershipInformation.silver && !formData.membershipInformation.diamond && !formData.membershipInformation.gold) {
+      setFormErrors((prevErrors) => ({
+        ...prevErrors,
+        membershipInformation: { ...prevErrors.membershipInformation, bronze: 'At least one membership level must be selected' },
+      }));
+    }
+  
+    if (hasErrors(formErrors)) {
+      return;
+    }
+    console.log(formData);
+  };
+
   const handleSelectChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -193,6 +387,7 @@ const ContactForm = () => {
                     focus:outline-none focus:ring" 
                     name="username"
                     value={formData.accountInformation.username}
+                    required
                     onChange={(e) => handleInputChange(e, 'accountInformation')}
                     />
             </div>
@@ -203,6 +398,8 @@ const ContactForm = () => {
       id="verifiedAccount"
       type="checkbox"
       className="form-checkbox h-5 w-5 text-green-500"
+      checked={formData.accountInformation.verifiedAccount}
+      onChange={handleCheckboxChange}
     />
   </div>
   <div className="flex items-center ml-2">
@@ -232,6 +429,7 @@ const ContactForm = () => {
                  text-white bg-primary border border-gray-300 rounded-md
                     focus:outline-none focus:ring"
                     type="text"
+                    required
                     name="firstName"
                     value={formData.contactInformation.firstName}
                     onChange={(e) => handleInputChange(e, 'contactInformation')}
@@ -245,6 +443,7 @@ const ContactForm = () => {
                     focus:outline-none focus:ring" 
                     type="text"
                     name="familyName"
+                    required
                     value={formData.contactInformation.familyName}
                     onChange={(e) => handleInputChange(e, 'contactInformation')}
                     />
@@ -257,6 +456,7 @@ const ContactForm = () => {
                     focus:outline-none focus:ring"
                     type="text"
                     name="preferredGreetings"
+                    required
                     value={formData.contactInformation.preferredGreetings}
                     onChange={(e) => handleInputChange(e, 'contactInformation')}
                     />
@@ -270,6 +470,7 @@ const ContactForm = () => {
                     focus:outline-none focus:ring" 
                     type="text"
                     name="jobTitle"
+                    required
                     value={formData.contactInformation.jobTitle}
                     onChange={(e) => handleInputChange(e, 'contactInformation')}
                     />
@@ -280,6 +481,7 @@ const ContactForm = () => {
                  text-white bg-primary border border-gray-300 rounded-md
                     focus:outline-none focus:ring" 
                     name="emailAddress"
+                    required
                     value={formData.contactInformation.emailAddress}
                     onChange={(e) => handleInputChange(e, 'contactInformation')}
                     />
@@ -290,6 +492,7 @@ const ContactForm = () => {
                  text-white bg-primary border border-gray-300 rounded-md
                     focus:outline-none focus:ring" 
                     name="mobileNumber"
+                    required
                     value={formData.contactInformation.mobileNumber}
                     onChange={(e) => handleInputChange(e, 'contactInformation')}
                     />
@@ -347,6 +550,7 @@ const ContactForm = () => {
                  text-white bg-primary border border-gray-300 rounded-md
                     focus:outline-none focus:ring" 
                     name="businessName"
+                    required
                     value={formData.businessInformation.businessName}
                     onChange={(e) => handleInputChange(e, 'businessInformation')} />
             </div>
@@ -358,6 +562,7 @@ const ContactForm = () => {
                 border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300
                  dark:border-gray-600" 
                  name="country"
+                 required
                  onChange={handleSelectChange}
                 value={formData.businessInformation.country}
                  >
@@ -421,6 +626,7 @@ const ContactForm = () => {
           className="block w-full px-4 py-2 mt-2 text-white bg-primary border border-gray-300 rounded-md focus:outline-none focus:ring"
           onChange={(e) => handleInputChange(e, 'businessInformation')}
           name="subCategory"
+          required
           value={formData.businessInformation.subCategory}
         />
 
@@ -471,6 +677,7 @@ const ContactForm = () => {
       <input
         type="password"
         name="securityPassword"
+        required
         value={formData.securityInformation.securityPassword}
         onChange={(e) => handleInputChange(e, 'securityInformation')}
         className="block w-full px-4 py-2 text-white bg-primary border border-gray-300 rounded-md focus:outline-none focus:ring mt-2"
@@ -572,6 +779,25 @@ const ContactForm = () => {
       Save Changes
     </button>
   </div>
+  <div className="mt-4 text-red-500">
+          {formErrors.accountInformation.username && <p>{formErrors.accountInformation.username}</p>}
+          {formErrors.accountInformation.verifiedAccount && <p>{formErrors.accountInformation.verifiedAccount}</p>}
+
+          {formErrors.contactInformation.firstName && <p>{formErrors.contactInformation.firstName}</p>}
+          {formErrors.contactInformation.familyName && <p>{formErrors.contactInformation.familyName}</p>}
+          {formErrors.contactInformation.preferredGreetings && <p>{formErrors.contactInformation.preferredGreetings}</p>}
+          {formErrors.contactInformation.jobTitle && <p>{formErrors.contactInformation.jobTitle}</p>}
+          {formErrors.contactInformation.emailAddress && <p>{formErrors.contactInformation.emailAddress}</p>}
+          {formErrors.contactInformation.mobileNumber && <p>{formErrors.contactInformation.mobileNumber}</p>}
+          {formErrors.businessInformation.businessName && <p>{formErrors.businessInformation.businessName}</p>}
+          {formErrors.businessInformation.country && <p>{formErrors.businessInformation.country}</p>}
+          {formErrors.businessInformation.state && <p>{formErrors.businessInformation.state}</p>}
+          {/* Security Information Errors */}
+          {formErrors.securityInformation.securityPassword && <p>{formErrors.securityInformation.securityPassword}</p>}
+          {formErrors.membershipInformation.bronze && <p>{formErrors.membershipInformation.bronze}</p>}
+          {formErrors.membershipInformation.silver && <p>{formErrors.membershipInformation.silver}</p>}
+          {/* Add more errors for other membership information fields as needed */}
+        </div>
 </form>
 </>
   )

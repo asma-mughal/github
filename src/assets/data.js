@@ -106,7 +106,6 @@ export const UserData = [
   };
   
   export const isValidMobileNumber = (mobileNumber) => {
-    // Basic mobile number format validation
     const mobileNumberRegex = /^\d{10}$/;
     return mobileNumberRegex.test(mobileNumber);
   };
