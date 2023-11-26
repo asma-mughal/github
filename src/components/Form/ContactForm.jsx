@@ -9,6 +9,7 @@ import { GeoNews } from '../../assets';
 import PencilIcon from '@mui/icons-material/PersonPinCircleRounded';
 import MemberShipIcon from '@mui/icons-material/CardMembership';
 import TickMarkIcon from '@mui/icons-material/CheckCircleOutline';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import { isValidEmail, isValidPostalCode, isValidMobileNumber } from '../../assets/data';
 const ImageUploader = ({ label, id, text , handleImageUpload, loadingImg}) => {
   return (
@@ -382,14 +383,20 @@ const ContactForm = () => {
         <div className="grid grid-cols-1 gap-6  sm:grid-cols-2">
             <div>
                 <label className="text-white dark:text-gray-200" for="username">User Name</label>
-                <input id="username" type="text" className="block w-full px-4 py-2 mt-2
-                 text-white bg-primary border border-gray-300 rounded-md
-                    focus:outline-none focus:ring" 
-                    name="username"
-                    value={formData.accountInformation.username}
-                    required
-                    onChange={(e) => handleInputChange(e, 'accountInformation')}
-                    />
+                <div className="relative">
+      <span className="absolute inset-y-0 left-0 flex items-center pl-2">
+        <CheckCircleOutlineIcon style={{ color: '#4CAF50' }} />
+      </span>
+      <input
+        id="username"
+        type="text"
+        className="block w-full px-10 py-2 mt-2 text-white bg-primary border border-gray-300 rounded-md focus:outline-none focus:ring"
+        name="username"
+        value={formData.accountInformation.username}
+        required
+        onChange={(e) => handleInputChange(e, 'accountInformation')}
+      />
+    </div>
             </div>
 
             <div className="flex items-center  mt-5">
