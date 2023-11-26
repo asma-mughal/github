@@ -8,6 +8,7 @@ import SecuirtyIcon from '@mui/icons-material/Security';
 import { GeoNews } from '../../assets';
 import PencilIcon from '@mui/icons-material/PersonPinCircleRounded';
 import MemberShipIcon from '@mui/icons-material/CardMembership';
+import TickMarkIcon from '@mui/icons-material/CheckCircleOutline';
 const ImageUploader = ({ label, id, text }) => {
   return (
     <div className="flex flex-col mr-4">
@@ -57,13 +58,128 @@ const ImageUploader = ({ label, id, text }) => {
 const ContactForm = () => {
   
   return (
+    <>
+
+
     <section className="max-w-4xl p-6 mx-auto bg-primary rounded-md shadow-md dark:bg-gray-800 mt-20">
-       <div class="flex items-center mb-4">
+    <div class="flex items-center justify-center mb-4">
+  <div className="flex flex-col items-center">
+    <ContactPersonIcon fontSize="small" style={{ color: '#E7B82F' }} className="mb-2" />
+    <h2 className="text-xl text-secondary-yellow dark:text-gray-200 uppercase">Account Information</h2>
+  </div>
+  <div className="border-l border-dotted border-gray-300 h-14 mx-4">a</div>
+  <div className="flex flex-col items-center">
+    <ContactPersonIcon fontSize="small" style={{ color: '#E7B82F' }} className="mb-2" />
+    <h2 className="text-xl text-secondary-yellow dark:text-gray-200 uppercase">Payment Details</h2>
+  </div>
+</div>
+<form>
+        <div className="grid grid-cols-1 gap-6  sm:grid-cols-2">
+            <div>
+                <label className="text-white dark:text-gray-200" for="username">User Name</label>
+                <input id="username" type="text" className="block w-full px-4 py-2 mt-2
+                 text-white bg-primary border border-gray-300 rounded-md
+                    focus:outline-none focus:ring" />
+            </div>
+
+            <div className="flex items-center  mt-5">
+  <div>
+    <input
+      id="verifiedAccount"
+      type="checkbox"
+      className="form-checkbox h-5 w-5 text-green-500"
+    />
+  </div>
+  <div className="flex items-center ml-2">
+    <TickMarkIcon fontSize="small" style={{ color: 'green' }} className="mr-2" />
+    <label className="text-white dark:text-gray-200" htmlFor="verifiedAccount">
+      Verified Account
+    </label>
+  </div>
+  <div>
+
+  </div>
+</div>
+
+            </div>
+    </form>
+       <div class="flex items-center mt-4 mb-4">
        <ContactPersonIcon fontSize="small" style={{
       color :'#E7B82F',
     }} className=" mr-2 " />
         <h2 className="text-xl text-secondary-yellow dark:text-gray-200 uppercase">Contact Information</h2>
     </div>
+    <form>
+        <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
+            <div>
+                <label className="text-white dark:text-gray-200" for="username">First Name</label>
+                <input id="username" type="text" className="block w-full px-4 py-2 mt-2
+                 text-white bg-primary border border-gray-300 rounded-md
+                    focus:outline-none focus:ring" />
+            </div>
+
+            <div>
+                <label class="text-white dark:text-gray-200" for="emailAddress">Family Name</label>
+                <input id="emailAddress" type="text" className="block w-full px-4 py-2 mt-2
+                 text-white bg-primary border border-gray-300 rounded-md
+                    focus:outline-none focus:ring"  />
+            </div>
+
+            <div>
+                <label class="text-white dark:text-gray-200" for="password">Preferred Greetings</label>
+                <input id="text" type="text" className="block w-full px-4 py-2 mt-2
+                 text-white bg-primary border border-gray-300 rounded-md
+                    focus:outline-none focus:ring" />
+            </div>
+
+            <div>
+                <label class="text-white dark:text-gray-200" for="passwordConfirmation">Job Title </label>
+                <input id="passwordConfirmation" type="password"
+                 className="block w-full px-4 py-2 mt-2
+                 text-white bg-primary border border-gray-300 rounded-md
+                    focus:outline-none focus:ring" />
+            </div>
+            <div>
+                <label class="text-white dark:text-gray-200" for="passwordConfirmation">Email Address</label>
+                <input id="emailAddress" type="email" className="block w-full px-4 py-2 mt-2
+                 text-white bg-primary border border-gray-300 rounded-md
+                    focus:outline-none focus:ring" />
+            </div>
+            <div>
+                <label class="text-white dark:text-gray-200" for="passwordConfirmation">Mobile Number</label>
+                <input id="range" type="range" className="block w-full px-4 py-2 mt-2
+                 text-white bg-primary border border-gray-300 rounded-md
+                    focus:outline-none focus:ring" />
+            </div>
+           
+          
+          
+          
+            <div>
+                <label className="block text-sm text-white">
+                Image
+              </label>
+              <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                <div class="space-y-1 text-center">
+                  <svg class="mx-auto h-12 w-12 text-white" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                    <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  <div class="flex text-sm text-gray-600">
+                    <label for="file-upload" class="relative cursor-pointer
+                     rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                      <span class="">Upload a file</span>
+                      <input id="file-upload" name="file-upload" type="file" class="sr-only" />
+                    </label>
+                    <p class="pl-1 text-white">or drag and drop</p>
+                  </div>
+                  <p class="text-xs text-white">
+                    PNG, JPG, GIF up to 2.5MB
+                  </p>
+                </div>
+              </div>
+            </div>
+        </div>
+    </form>
     <form>
         <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
             <div>
@@ -304,9 +420,8 @@ const ContactForm = () => {
   </div>
 </form>
 
-
 </section>
-
+</>
   )
 }
 
