@@ -10,7 +10,7 @@ import PencilIcon from '@mui/icons-material/PersonPinCircleRounded';
 import MemberShipIcon from '@mui/icons-material/CardMembership';
 import TickMarkIcon from '@mui/icons-material/CheckCircleOutline';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
-import { isValidEmail, isValidPostalCode, isValidMobileNumber } from '../../assets/data';
+import { isValidEmail, isValidPostalCode, isValidMobileNumber, isValidPassword } from '../../assets/data';
 const ImageUploader = ({ label, id, text , handleImageUpload, loadingImg}) => {
   return (
     <div className="flex flex-col mr-4">
@@ -291,11 +291,22 @@ const ContactForm = () => {
         contactInformation: { ...prevErrors.contactInformation, mobileNumber: 'Invalid mobile number' },
       }));
     }
-
-    if (!formData.businessInformation.businessName) {
+    if (!formData.contactInformation.image) {
       setFormErrors((prevErrors) => ({
         ...prevErrors,
-        businessInformation: { ...prevErrors.businessInformation, businessName: 'Business name is required' },
+        contactInformation: { ...prevErrors.contactInformation, image: 'Upload Image' },
+      }));
+    }
+    if (!formData.businessInformation.images) {
+      setFormErrors((prevErrors) => ({
+        ...prevErrors,
+        businessInformation: { ...prevErrors.businessInformation, images: 'Upload Busniess Logo' },
+      }));
+    }
+    if (!formData.businessInformation.businessName ) {
+      setFormErrors((prevErrors) => ({
+        ...prevErrors,
+        businessInformation: { ...prevErrors.businessInformation, businessName: 'Busniess Name is required' },
       }));
     }
   
@@ -316,25 +327,25 @@ const ContactForm = () => {
     if (!formData.businessInformation.postalCode || !isValidPostalCode(formData.businessInformation.postalCode)) {
       setFormErrors((prevErrors) => ({
         ...prevErrors,
-        businessInformation: { ...prevErrors.postalCode, postalCode: 'Postal Code is required' },
+        businessInformation: { ...prevErrors.businessInformation, postalCode: 'Postal Code is required' },
       }));
     }
     if (!formData.businessInformation.subCategory ) {
       setFormErrors((prevErrors) => ({
         ...prevErrors,
-        businessInformation: { ...prevErrors.subCategory, subCategory: 'Sub-Category is required' },
+        businessInformation: { ...prevErrors.businessInformation, subCategory: 'Sub-Category is required' },
       }));
     }
     if (!formData.businessInformation.businessDescription ) {
       setFormErrors((prevErrors) => ({
         ...prevErrors,
-        businessInformation: { ...prevErrors.businessDescription, businessDescription: 'Busniess description is required' },
+        businessInformation: { ...prevErrors.businessInformation, businessDescription: 'Busniess description is required' },
       }));
     }
-    if (!formData.securityInformation.securityPassword) {
+    if (!formData.securityInformation.securityPassword || !isValidPassword(formData.securityInformation.securityPassword)) {
       setFormErrors((prevErrors) => ({
         ...prevErrors,
-        securityInformation: { ...prevErrors.securityInformation, securityPassword: 'Security password is required' },
+        securityInformation: { ...prevErrors.securityInformation, securityPassword: 'Security password is invalid' },
       }));
     }
     if (!formData.membershipInformation.bronze && !formData.membershipInformation.silver && !formData.membershipInformation.diamond && !formData.membershipInformation.gold) {
@@ -383,20 +394,17 @@ const ContactForm = () => {
         <div className="grid grid-cols-1 gap-6  sm:grid-cols-2">
             <div>
                 <label className="text-white dark:text-gray-200" for="username">User Name</label>
-                <div className="relative">
-      <span className="absolute inset-y-0 left-0 flex items-center pl-2">
-        <CheckCircleOutlineIcon style={{ color: '#4CAF50' }} />
-      </span>
+
       <input
         id="username"
         type="text"
-        className="block w-full px-10 py-2 mt-2 text-white bg-primary border border-gray-300 rounded-md focus:outline-none focus:ring"
+        className="block w-full py-2 px-4 mt-2 text-white bg-primary border
+        rounded-md"
         name="username"
         value={formData.accountInformation.username}
         required
         onChange={(e) => handleInputChange(e, 'accountInformation')}
       />
-    </div>
             </div>
 
             <div className="flex items-center  mt-5">
@@ -433,10 +441,9 @@ const ContactForm = () => {
             <div>
                 <label className="text-white dark:text-gray-200" for="username">First Name</label>
                 <input id="username" className="block w-full px-4 py-2 mt-2
-                 text-white bg-primary border border-gray-300 rounded-md
-                    focus:outline-none focus:ring"
+                 text-white bg-primary border rounded-md
+                    "
                     type="text"
-                    required
                     name="firstName"
                     value={formData.contactInformation.firstName}
                     onChange={(e) => handleInputChange(e, 'contactInformation')}
@@ -446,8 +453,8 @@ const ContactForm = () => {
             <div>
                 <label class="text-white dark:text-gray-200" for="emailAddress">Family Name</label>
                 <input id="emailAddress" className="block w-full px-4 py-2 mt-2
-                 text-white bg-primary border border-gray-300 rounded-md
-                    focus:outline-none focus:ring" 
+                 text-white bg-primary border  rounded-md
+                   " 
                     type="text"
                     name="familyName"
                     required
@@ -459,8 +466,8 @@ const ContactForm = () => {
             <div>
                 <label class="text-white dark:text-gray-200" for="password">Preferred Greetings</label>
                 <input id="text"  className="block w-full px-4 py-2 mt-2
-                 text-white bg-primary border border-gray-300 rounded-md
-                    focus:outline-none focus:ring"
+                 text-white bg-primary border rounded-md
+                    "
                     type="text"
                     name="preferredGreetings"
                     required
@@ -473,8 +480,8 @@ const ContactForm = () => {
                 <label class="text-white dark:text-gray-200" for="passwordConfirmation">Job Title </label>
                 <input id="passwordConfirmation"
                  className="block w-full px-4 py-2 mt-2
-                 text-white bg-primary border border-gray-300 rounded-md
-                    focus:outline-none focus:ring" 
+                 text-white bg-primary border  rounded-md
+                    " 
                     type="text"
                     name="jobTitle"
                     required
@@ -485,8 +492,8 @@ const ContactForm = () => {
             <div>
                 <label class="text-white dark:text-gray-200" for="passwordConfirmation">Email Address</label>
                 <input id="emailAddress" type="email" className="block w-full px-4 py-2 mt-2
-                 text-white bg-primary border border-gray-300 rounded-md
-                    focus:outline-none focus:ring" 
+                 text-white bg-primary border  rounded-md
+                   " 
                     name="emailAddress"
                     required
                     value={formData.contactInformation.emailAddress}
@@ -496,8 +503,7 @@ const ContactForm = () => {
             <div>
                 <label class="text-white dark:text-gray-200" for="passwordConfirmation">Mobile Number</label>
                 <input id="emailAddress" type="email" className="block w-full px-4 py-2 mt-2
-                 text-white bg-primary border border-gray-300 rounded-md
-                    focus:outline-none focus:ring" 
+                 text-white bg-primary border rounded-md" 
                     name="mobileNumber"
                     required
                     value={formData.contactInformation.mobileNumber}
@@ -796,10 +802,14 @@ const ContactForm = () => {
           {formErrors.contactInformation.jobTitle && <p>{formErrors.contactInformation.jobTitle}</p>}
           {formErrors.contactInformation.emailAddress && <p>{formErrors.contactInformation.emailAddress}</p>}
           {formErrors.contactInformation.mobileNumber && <p>{formErrors.contactInformation.mobileNumber}</p>}
+          {formErrors.contactInformation.image && <p>{formErrors.contactInformation.image}</p>}
           {formErrors.businessInformation.businessName && <p>{formErrors.businessInformation.businessName}</p>}
           {formErrors.businessInformation.country && <p>{formErrors.businessInformation.country}</p>}
           {formErrors.businessInformation.state && <p>{formErrors.businessInformation.state}</p>}
-          {/* Security Information Errors */}
+          {formErrors.businessInformation.postalCode && <p>{formErrors.businessInformation.postalCode}</p>}
+          {formErrors.businessInformation.businessDescription && <p>{formErrors.businessInformation.businessDescription}</p>}
+          {formErrors.businessInformation.subCategory && <p>{formErrors.businessInformation.subCategory}</p>}
+          {formErrors.businessInformation.images && <p>{formErrors.businessInformation.images}</p>}
           {formErrors.securityInformation.securityPassword && <p>{formErrors.securityInformation.securityPassword}</p>}
           {formErrors.membershipInformation.bronze && <p>{formErrors.membershipInformation.bronze}</p>}
           {formErrors.membershipInformation.silver && <p>{formErrors.membershipInformation.silver}</p>}

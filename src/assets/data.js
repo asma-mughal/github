@@ -100,7 +100,6 @@ export const UserData = [
   ];
 
   export const isValidEmail = (email) => {
-    // Basic email format validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
@@ -111,8 +110,12 @@ export const UserData = [
   };
   
   export const isValidPostalCode = (postalCode) => {
-    // Basic postal code format validation
+
     const postalCodeRegex = /^\d{5}$/;
     return postalCodeRegex.test(postalCode);
   };
-  
+    
+  export const isValidPassword = (passCode) => {
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+    return passwordRegex.test(passCode);
+  };
