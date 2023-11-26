@@ -252,52 +252,47 @@ const ContactForm = () => {
   <MemberShipIcon fontSize="small" style={{ color: '#E7B82F' }} className="mr-2" />
   <h2 className="text-xl text-secondary-yellow dark:text-gray-200 uppercase">Membership </h2>
 </div>
-<form className="grid grid-cols-2 gap-8">
-<div className="flex-1 flex flex-col">
-  {/* Headings Section */}
-  <div className="flex items-center mb-4">
-    {/* Membership Type Heading */}
-    <div className="flex items-center mr-4">
-      <h3 className="text-lg text-secondary-yellow dark:text-gray-200">Membership Type</h3>
+<form className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+  <div className="md:col-span-2 lg:col-span-2 flex flex-col">
+    {/* Headings Section */}
+    <div className="flex items-center mb-4">
+      {/* Membership Type Heading */}
+      <div className="flex items-center mr-4">
+        <h3 className="text-lg text-secondary-yellow dark:text-gray-200">Membership Type</h3>
+      </div>
+
+      {/* Dotted Vertical Line */}
+      <div className="border-l border-dotted border-gray-300 h-full mx-4"></div>
+
+      {/* Additional Membership Details Heading */}
+      <div className="flex items-center">
+        <h3 className="text-lg text-secondary-yellow dark:text-gray-200">Additional Details</h3>
+      </div>
     </div>
 
-    {/* Dotted Vertical Line */}
-    <div className="border-l border-dotted border-gray-300 h-full mx-4"></div>
+    <div className="flex flex-row mt-4">
+      <label className="flex items-center mb-2">
+        <input type="checkbox" className="form-checkbox text-primary h-4 w-4" />
+        <span className="ml-2 mr-5 text-sm text-white">Bronze</span>
+      </label>
+      <label className="flex items-center mb-2">
+        <input type="checkbox" className="form-checkbox text-primary h-4 w-4" />
+        <span className="ml-2 mr-5 text-sm text-white">Silver</span>
+      </label>
+      <label className="flex items-center mb-2">
+        <input type="checkbox" className="form-checkbox text-primary h-4 w-4" />
+        <span className="ml-2 mr-5 text-sm text-white">Diamond</span>
+      </label>
+      <label className="flex items-center mb-2">
+        <input type="checkbox" className="form-checkbox  text-gray-400 h-4 w-4" />
+        <span className="ml-2 mr-5 text-sm text-white">Gold</span>
+      </label>
 
-    {/* Additional Membership Details Heading */}
-    <div className="flex items-center">
-      <h3 className="text-lg text-secondary-yellow dark:text-gray-200">Additional Details</h3>
+
     </div>
   </div>
 
-  {/* Checkboxes Section */}
-  <div className="flex flex-row mt-4">
-    <label className="flex items-center mb-2">
-      <input type="checkbox" className="form-checkbox text-primary h-4 w-4" />
-      <span className="ml-2 text-sm text-white">Bronze</span>
-    </label>
-
-    <label className="flex items-center mb-2">
-      <input type="checkbox" className="form-checkbox text-primary h-4 w-4" />
-      <span className="ml-2 text-sm text-white">Silver</span>
-    </label>
-
-    <label className="flex items-center mb-2">
-      <input type="checkbox" className="form-checkbox text-primary h-4 w-4" />
-      <span className="ml-2 text-sm text-white">Gold</span>
-    </label>
-
-    <label className="flex items-center mb-2">
-      <input type="checkbox" className="form-checkbox text-primary h-4 w-4" />
-      <span className="ml-2 text-sm text-white">Diamond</span>
-    </label>
-  </div>
-
-
-</div>
-
-
-  <div className="flex-1 flex flex-col justify-between">
+  <div className="md:col-span-1 lg:col-span-1 flex flex-col justify-between">
     <div className="flex items-center mb-4">
       <MemberShipIcon fontSize="small" style={{ color: '#E7B82F' }} className="mr-2" />
       <h3 className="text-sm text-secondary-yellow dark:text-gray-200">Renew My Membership</h3>
@@ -308,6 +303,8 @@ const ContactForm = () => {
     </div>
   </div>
 </form>
+
+
 </section>
 
   )
