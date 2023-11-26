@@ -15,9 +15,10 @@ const Footer = () => {
             className="inline-flex items-center"
           >
            
-            <span className="ml-2 text-xl font-bold tracking-wide text-white uppercase">
-              Company
-            </span>
+           <span className="ml-2 text-xl font-bold tracking-wide">
+  <span className="text-white uppercase">Actors</span>
+  <span className="text-secondary-yellow uppercase">Index</span>
+</span>
           </a>
           <div className="mt-6 lg:max-w-sm">
             <p className="text-sm text-white">
