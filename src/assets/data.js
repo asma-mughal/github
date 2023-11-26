@@ -99,3 +99,21 @@ export const UserData = [
     },
   ];
 
+  export const isValidEmail = (email) => {
+    // Basic email format validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+  
+  export const isValidMobileNumber = (mobileNumber) => {
+    // Basic mobile number format validation
+    const mobileNumberRegex = /^\d{10}$/;
+    return mobileNumberRegex.test(mobileNumber);
+  };
+  
+  export const isValidPostalCode = (postalCode) => {
+    // Basic postal code format validation
+    const postalCodeRegex = /^\d{5}$/;
+    return postalCodeRegex.test(postalCode);
+  };
+  

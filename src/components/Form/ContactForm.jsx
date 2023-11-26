@@ -9,7 +9,7 @@ import { GeoNews } from '../../assets';
 import PencilIcon from '@mui/icons-material/PersonPinCircleRounded';
 import MemberShipIcon from '@mui/icons-material/CardMembership';
 import TickMarkIcon from '@mui/icons-material/CheckCircleOutline';
-const ImageUploader = ({ label, id, text }) => {
+const ImageUploader = ({ label, id, text , handleImageUpload, loadingImg}) => {
   return (
     <div className="flex flex-col mr-4">
       <label className="block text-sm font-medium text-white">Busniess logo</label>
@@ -21,9 +21,12 @@ const ImageUploader = ({ label, id, text }) => {
 
           <div className="flex text-sm text-gray-600">
             <label htmlFor={`file-upload-${id}`} className="relative 
-            cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-              <span className="text-xs text-center">Drop your files here</span>
-              <input id={`file-upload-${id}`} name={`file-upload-${id}`} type="file" className="sr-only" />
+            cursor-pointer bg-primary rounded-md font-medium text-white">
+              <span  className="text-xs text-center font-bold">
+                {loadingImg ? <span className='text-center'>Uploading</span> : 'Drop or Upload a file'}</span>
+              <input id={`file-upload-${id}`} name={`file-upload-${id}`}
+              
+              type="file" className="sr-only"  onChange={(e) => handleImageUpload(e, 0)}/>
             </label>
           </div>
           <p className="text-xs text-white">
@@ -56,6 +59,8 @@ const ImageUploader = ({ label, id, text }) => {
   );
 };
 const ContactForm = () => {
+  const [loading, setLoading] = useState(false);
+  const [loadingImg, setLoadingImg] = useState(false);
   const [formData, setFormData] = useState({
     accountInformation: {
       username: '',
@@ -78,6 +83,7 @@ const ContactForm = () => {
       businessCategory: 'A',
       subCategory: '',
       businessDescription: '',
+      images: [null, null],
     },
     securityInformation: {
       securityPassword: '',
@@ -103,22 +109,62 @@ const ContactForm = () => {
     }));
   };
   const handleImageUpload = (e) => {
+  
     const file = e.target.files[0];
-    setFormData((prevData) => ({
-      ...prevData,
-      contactInformation: {
-        ...prevData.contactInformation,
-        image: file,
-      },
-    }));
-  };
+    if (file) {
+      setLoading(true);
+      setTimeout(() => {
+        setFormData((prevData) => ({
+          ...prevData,
+          contactInformation: {
+            ...prevData.contactInformation,
+            image: file,
+          },
+        }));
 
+        setLoading(false);
+      }, 2000); // Replace 2000 with the actual delay time for your image upload
+    }
+ 
+  };
+  const handleImageUploadBusniess = (e, index) => {
+    const file = e.target.files[0];
+    if (file) {
+      setLoadingImg(true);
+      setTimeout(() => {
+        setFormData((prevData) => {
+          const newImages = [...prevData.businessInformation.images];
+          newImages[index] = file;
+          return {
+            ...prevData,
+            businessInformation: {
+              ...prevData.businessInformation,
+              images: newImages,
+            },
+          };
+        });
+
+        setLoadingImg(false);
+      }, 2000); // Replace 2000 with the actual delay time for your image upload
+    }
+ 
+   
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
    
   };
-
+  const handleSelectChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      businessInformation: {
+        ...prevData.businessInformation,
+        [name]: value,
+      },
+    }));
+  };
   return (
     <>
 
@@ -127,12 +173,14 @@ const ContactForm = () => {
     <div class="flex items-center justify-center mb-4">
   <div className="flex flex-col items-center">
     <AccountCircleIcon fontSize="small" style={{ color: '#E7B82F' }} className="mb-2" />
-    <h2 className="text-xl text-secondary-yellow dark:text-gray-200 uppercase">Account Information</h2>
+    <h2 className="text-xl text-secondary-yellow
+    font-bold uppercase">Account Information</h2>
   </div>
   <div className="border-l border-dotted border-gray-300 h-14 mx-4">a</div>
   <div className="flex flex-col items-center">
     <PaymentIcon fontSize="small" style={{ color: '#E7B82F' }} className="mb-2" />
-    <h2 className="text-xl text-secondary-yellow dark:text-gray-200 uppercase">Payment Details</h2>
+    <h2 className="text-xl text-secondary-yellow
+    font-bold uppercase">Payment Details</h2>
   </div>
 </div>
 
@@ -249,107 +297,42 @@ const ContactForm = () => {
            
           
           
-          
             <div>
-                <label className="block text-sm text-white">
-                Image
-              </label>
-              <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-                <div class="space-y-1 text-center">
-                  <svg class="mx-auto h-12 w-12 text-white" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
-                    <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                  <div class="flex text-sm text-gray-600">
-                    <label for="file-upload" class="relative cursor-pointer
-                     rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-                      <span class="">Upload a file</span>
-                      <input id="file-upload" name="file-upload" type="file" class="sr-only" />
-                    </label>
-                    <p class="pl-1 text-white">or drag and drop</p>
-                  </div>
-                  <p class="text-xs text-white">
-                    PNG, JPG, GIF up to 2.5MB
-                  </p>
-                </div>
-              </div>
-            </div>
+      <label className="block text-sm text-white">
+        Image
+      </label>
+      <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+        <div className="space-y-1 text-center">
+          <svg className="mx-auto h-12 w-12 text-white" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+            <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <div className="flex text-sm text-gray-600">
+            <label
+              htmlFor="file-upload"
+              className={`relative cursor-pointer rounded-md font-medium text-white
+                ${loading ? 'opacity-50' : ''}`}
+            >
+              <span>{loading ? 'Uploading' : 'Upload a file'}</span>
+              <input
+                id="file-upload"
+                name="file-upload"
+                type="file"
+                className="sr-only"
+                onChange={handleImageUpload}
+                disabled={loading}
+              />
+            </label>
+            <p className="pl-1 text-white">or drag and drop</p>
+          </div>
+          <p className="text-xs text-white">
+            PNG, JPG, GIF up to 2.5MB
+          </p>
+        </div>
+      </div>
+    </div>
         </div>
     </form>
-    <form>
-        <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
-            <div>
-                <label className="text-white dark:text-gray-200" for="username">First Name</label>
-                <input id="username" type="text" className="block w-full px-4 py-2 mt-2
-                 text-white bg-primary border border-gray-300 rounded-md
-                    focus:outline-none focus:ring" />
-            </div>
-
-            <div>
-                <label class="text-white dark:text-gray-200" for="emailAddress">Family Name</label>
-                <input id="emailAddress" type="text" className="block w-full px-4 py-2 mt-2
-                 text-white bg-primary border border-gray-300 rounded-md
-                    focus:outline-none focus:ring"  />
-            </div>
-
-            <div>
-                <label class="text-white dark:text-gray-200" for="password">Preferred Greetings</label>
-                <input id="text" type="text" className="block w-full px-4 py-2 mt-2
-                 text-white bg-primary border border-gray-300 rounded-md
-                    focus:outline-none focus:ring" />
-            </div>
-
-            <div>
-                <label class="text-white dark:text-gray-200" for="passwordConfirmation">Job Title </label>
-                <input id="passwordConfirmation" type="password"
-                 className="block w-full px-4 py-2 mt-2
-                 text-white bg-primary border border-gray-300 rounded-md
-                    focus:outline-none focus:ring" />
-            </div>
-            <div>
-                <label class="text-white dark:text-gray-200" for="passwordConfirmation">Email Address</label>
-                <input id="emailAddress" type="email" className="block w-full px-4 py-2 mt-2
-                 text-white bg-primary border border-gray-300 rounded-md
-                    focus:outline-none focus:ring" />
-            </div>
-            <div>
-                <label class="text-white dark:text-gray-200" for="passwordConfirmation">Mobile Number</label>
-                <input id="range" type="range" className="block w-full px-4 py-2 mt-2
-                 text-white bg-primary border border-gray-300 rounded-md
-                    focus:outline-none focus:ring" />
-            </div>
-           
-          
-          
-          
-            <div>
-                <label className="block text-sm text-white">
-                Image
-              </label>
-              <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-                <div class="space-y-1 text-center">
-                  <svg class="mx-auto h-12 w-12 text-white" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
-                    <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                  <div class="flex text-sm text-gray-600">
-                    <label for="file-upload" class="relative cursor-pointer
-                     rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-                      <span class="">Upload a file</span>
-                      <input  type="file"
-            id="file-upload"
-            name="file-upload"
-            className="sr-only"
-            onChange={handleImageUpload} />
-                    </label>
-                    <p class="pl-1 text-white">or drag and drop</p>
-                  </div>
-                  <p class="text-xs text-white">
-                    PNG, JPG, GIF up to 2.5MB
-                  </p>
-                </div>
-              </div>
-            </div>
-        </div>
-    </form>
+  
     <div class="flex items-center mt-8">
     <BusniessIcon fontSize="small" style={{
       color :'#E7B82F',
@@ -362,13 +345,22 @@ const ContactForm = () => {
                 <label class="text-white dark:text-gray-200" for="username">Busniess Name</label>
                 <input id="username" type="text"className="block w-full px-4 py-2 mt-2
                  text-white bg-primary border border-gray-300 rounded-md
-                    focus:outline-none focus:ring"  />
+                    focus:outline-none focus:ring" 
+                    name="businessName"
+                    value={formData.businessInformation.businessName}
+                    onChange={(e) => handleInputChange(e, 'businessInformation')} />
             </div>
 
             <div>
             <div>
                 <label class="text-white dark:text-gray-200" for="passwordConfirmation">Country your busniess is located</label>
-                <select class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+                <select class="block w-full px-4 py-2 mt-2  bg-primary text-white 
+                border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300
+                 dark:border-gray-600" 
+                 name="country"
+                 onChange={handleSelectChange}
+                value={formData.businessInformation.country}
+                 >
                     <option>AUS</option>
                     <option>USA</option>
                     <option>Ireland</option>
@@ -379,7 +371,12 @@ const ContactForm = () => {
             <div>
             <div>
                 <label class="text-white dark:text-gray-200" for="passwordConfirmation">State/Province</label>
-                <select class="block w-full px-4 py-2 mt-2 text-white bg-primary border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+                <select class="block w-full px-4 py-2 mt-2 text-white 
+                bg-primary border border-gray-300 rounded-md dark:bg-gray-800 
+                dark:text-gray-300 dark:border-gray-600
+      "   onChange={handleSelectChange}
+      name="state"
+      value={formData.businessInformation.state}>
                     <option>America</option>
                     <option>Austriallia</option>
                     <option>Ireland</option>
@@ -393,12 +390,23 @@ const ContactForm = () => {
                 placeholder='232456'
                 className="block w-full px-4 py-2 mt-2
                 text-white bg-primary border border-gray-300 rounded-md
-                   focus:outline-none focus:ring"  />
+                   focus:outline-none focus:ring"
+                   onChange={(e) => handleInputChange(e, 'businessInformation')}
+                   name="postalCode"
+                   value={formData.businessInformation.postalCode}
+                   />
             </div>
             <div>
     
                 <label class="text-white dark:text-gray-200" for="passwordConfirmation">Busniess Category</label>
-                <select class="block w-full px-4 py-2 mt-2 text-white bg-primary border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+                <select class="block w-full px-4 py-2 mt-2 text-white 
+                bg-primary border border-gray-300 rounded-md 
+                dark:bg-gray-800 dark:text-gray-300 
+                dark:border-gray-600 "
+                name='businessCategory'
+                onChange={handleSelectChange}
+                value={formData.businessInformation.businessCategory}
+                >
                     <option>A</option>
                     <option>B</option>
                     <option>C</option>
@@ -406,20 +414,30 @@ const ContactForm = () => {
             </div>
             <div>
                 <label class="text-white dark:text-gray-200" for="passwordConfirmation">Sub-category</label>
-                <input id="range" type="range"className="block w-full px-4 py-2 mt-2
-                 text-white bg-primary border border-gray-300 rounded-md
-                    focus:outline-none focus:ring" placeholder='Type your subcategory' />
+                <input
+          id="subCategory"
+          type="text"
+          placeholder="Type your subcategory"
+          className="block w-full px-4 py-2 mt-2 text-white bg-primary border border-gray-300 rounded-md focus:outline-none focus:ring"
+          onChange={(e) => handleInputChange(e, 'businessInformation')}
+          name="subCategory"
+          value={formData.businessInformation.subCategory}
+        />
+
             </div>
             <div>
                 <label class="text-white dark:text-gray-200" for="passwordConfirmation">Busniess description</label>
                 <textarea
         id="myTextarea"
-        name="myTextarea"
+        name="businessDescription"
         rows="5"
         className="block w-full px-4 py-2 mt-1
         text-white bg-primary border border-gray-300 rounded-md
            focus:outline-none focus:ring"
         placeholder="Describe your busniess"
+
+        onChange={(e) => handleInputChange(e, 'businessInformation')}
+                   value={formData.businessInformation.businessDescription}
       ></textarea>
             </div>
            
@@ -428,7 +446,9 @@ const ContactForm = () => {
           
             <div className="flex ">
   <div className="flex-1">
-    <ImageUploader label="Image 1" id="1" text={"yes"} />
+    <ImageUploader label="Image 1" id="1" text={"yes"} handleImageUpload={handleImageUploadBusniess} 
+    loadingImg={loadingImg}
+    />
   </div>
   <div className="flex-1 w-full h-full">
     <ImageUploader id="2" text={"no"} />
@@ -449,13 +469,15 @@ const ContactForm = () => {
         Password
       </label>
       <input
-        id="securityPassword"
         type="password"
+        name="securityPassword"
+        value={formData.securityInformation.securityPassword}
+        onChange={(e) => handleInputChange(e, 'securityInformation')}
         className="block w-full px-4 py-2 text-white bg-primary border border-gray-300 rounded-md focus:outline-none focus:ring mt-2"
       />
     </div>
     <div className="flex items-center md:ml-5 mt-5 md:mt-0">
-      <label className="text-white dark:text-gray-200" htmlFor="changePassword">
+      <label className="text-white text-xs underline lowercase dark:text-gray-200" htmlFor="changePassword">
         Change Password
       </label>
       <PencilIcon fontSize="small" style={{ color: '#E7B82F' }} className="ml-1" />
@@ -469,7 +491,6 @@ const ContactForm = () => {
 </div>
 <form className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
   <div className="md:col-span-2 lg:col-span-2 flex flex-col">
-    {/* Headings Section */}
     <div className="flex items-center mb-4">
       {/* Membership Type Heading */}
       <div className="flex items-center mr-4">
@@ -487,19 +508,43 @@ const ContactForm = () => {
 
     <div className="flex flex-col md:flex-row mt-4">
   <label className="flex items-center mb-2">
-    <input type="checkbox" className="form-checkbox text-primary h-4 w-4" />
+  <input
+            type="checkbox"
+            className="form-checkbox text-primary h-4 w-4"
+            checked={formData.membershipInformation.bronze}
+            onChange={(e) => handleInputChange(e, 'membershipInformation')}
+            name="bronze"
+          />
     <span className="ml-2 mr-5 text-sm text-white">Bronze</span>
   </label>
   <label className="flex items-center mb-2">
-    <input type="checkbox" className="form-checkbox text-primary h-4 w-4" />
+  <input
+            type="checkbox"
+            className="form-checkbox text-primary h-4 w-4"
+            checked={formData.membershipInformation.silver}
+            onChange={(e) => handleInputChange(e, 'membershipInformation')}
+            name="silver"
+          />
     <span className="ml-2 mr-5 text-sm text-white">Silver</span>
   </label>
   <label className="flex items-center mb-2">
-    <input type="checkbox" className="form-checkbox text-primary h-4 w-4" />
+  <input
+            type="checkbox"
+            className="form-checkbox text-primary h-4 w-4"
+            checked={formData.membershipInformation.diamond}
+            onChange={(e) => handleInputChange(e, 'membershipInformation')}
+            name="diamond"
+          />
     <span className="ml-2 mr-5 text-sm text-white">Diamond</span>
   </label>
   <label className="flex items-center mb-2">
-    <input type="checkbox" className="form-checkbox  text-gray-400 h-4 w-4" />
+  <input
+            type="checkbox"
+            className="form-checkbox text-gray-400 h-4 w-4"
+            checked={formData.membershipInformation.gold}
+            onChange={(e) => handleInputChange(e, 'membershipInformation')}
+            name="gold"
+          />
     <span className="ml-2 mr-5 text-sm text-white">Gold</span>
   </label>
 </div>
