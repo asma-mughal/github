@@ -6,7 +6,7 @@ import ContactForm from '../../components/Form/ContactForm'
 const MyAccount = () => {
   return (
     <>
-    <div className="flex bg-primary">
+    <div className="flex bg-primary font-poppins">
     <Sidebar />
     <div className="flex-1 flex flex-col overflow-hidden">
       <Navbar />
