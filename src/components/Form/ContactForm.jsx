@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import PaymentIcon from '@mui/icons-material/Payment';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
@@ -56,30 +56,97 @@ const ImageUploader = ({ label, id, text }) => {
   );
 };
 const ContactForm = () => {
-  
+  const [formData, setFormData] = useState({
+    accountInformation: {
+      username: '',
+      verifiedAccount: false,
+    },
+    contactInformation: {
+      firstName: '',
+      familyName: '',
+      preferredGreetings: '',
+      jobTitle: '',
+      emailAddress: '',
+      mobileNumber: '',
+      image: null, 
+    },
+    businessInformation: {
+      businessName: '',
+      country: 'AUS',
+      state: 'America',
+      postalCode: '',
+      businessCategory: 'A',
+      subCategory: '',
+      businessDescription: '',
+    },
+    securityInformation: {
+      securityPassword: '',
+    },
+    membershipInformation: {
+      bronze: false,
+      silver: false,
+      diamond: false,
+      gold: false,
+      renewMembership: false,
+      upgradeMembership: false,
+    },
+  });
+
+  const handleInputChange = (e, section) => {
+    const { name, value, type, checked } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [section]: {
+        ...prevData[section],
+        [name]: type === 'checkbox' ? checked : value,
+      },
+    }));
+  };
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    setFormData((prevData) => ({
+      ...prevData,
+      contactInformation: {
+        ...prevData.contactInformation,
+        image: file,
+      },
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
+   
+  };
+
   return (
     <>
 
-
+<form onSubmit={handleSubmit}>
     <section className="max-w-4xl p-6 mx-auto bg-primary rounded-md shadow-md dark:bg-gray-800 mt-20">
     <div class="flex items-center justify-center mb-4">
   <div className="flex flex-col items-center">
-    <ContactPersonIcon fontSize="small" style={{ color: '#E7B82F' }} className="mb-2" />
+    <AccountCircleIcon fontSize="small" style={{ color: '#E7B82F' }} className="mb-2" />
     <h2 className="text-xl text-secondary-yellow dark:text-gray-200 uppercase">Account Information</h2>
   </div>
   <div className="border-l border-dotted border-gray-300 h-14 mx-4">a</div>
   <div className="flex flex-col items-center">
-    <ContactPersonIcon fontSize="small" style={{ color: '#E7B82F' }} className="mb-2" />
+    <PaymentIcon fontSize="small" style={{ color: '#E7B82F' }} className="mb-2" />
     <h2 className="text-xl text-secondary-yellow dark:text-gray-200 uppercase">Payment Details</h2>
   </div>
 </div>
+
 <form>
         <div className="grid grid-cols-1 gap-6  sm:grid-cols-2">
             <div>
                 <label className="text-white dark:text-gray-200" for="username">User Name</label>
                 <input id="username" type="text" className="block w-full px-4 py-2 mt-2
                  text-white bg-primary border border-gray-300 rounded-md
-                    focus:outline-none focus:ring" />
+                    focus:outline-none focus:ring" 
+                    name="username"
+                    value={formData.accountInformation.username}
+                    onChange={(e) => handleInputChange(e, 'accountInformation')}
+                    />
             </div>
 
             <div className="flex items-center  mt-5">
@@ -113,43 +180,71 @@ const ContactForm = () => {
         <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
             <div>
                 <label className="text-white dark:text-gray-200" for="username">First Name</label>
-                <input id="username" type="text" className="block w-full px-4 py-2 mt-2
+                <input id="username" className="block w-full px-4 py-2 mt-2
                  text-white bg-primary border border-gray-300 rounded-md
-                    focus:outline-none focus:ring" />
+                    focus:outline-none focus:ring"
+                    type="text"
+                    name="firstName"
+                    value={formData.contactInformation.firstName}
+                    onChange={(e) => handleInputChange(e, 'contactInformation')}
+                    />
             </div>
 
             <div>
                 <label class="text-white dark:text-gray-200" for="emailAddress">Family Name</label>
-                <input id="emailAddress" type="text" className="block w-full px-4 py-2 mt-2
+                <input id="emailAddress" className="block w-full px-4 py-2 mt-2
                  text-white bg-primary border border-gray-300 rounded-md
-                    focus:outline-none focus:ring"  />
+                    focus:outline-none focus:ring" 
+                    type="text"
+                    name="familyName"
+                    value={formData.contactInformation.familyName}
+                    onChange={(e) => handleInputChange(e, 'contactInformation')}
+                    />
             </div>
 
             <div>
                 <label class="text-white dark:text-gray-200" for="password">Preferred Greetings</label>
-                <input id="text" type="text" className="block w-full px-4 py-2 mt-2
+                <input id="text"  className="block w-full px-4 py-2 mt-2
                  text-white bg-primary border border-gray-300 rounded-md
-                    focus:outline-none focus:ring" />
+                    focus:outline-none focus:ring"
+                    type="text"
+                    name="preferredGreetings"
+                    value={formData.contactInformation.preferredGreetings}
+                    onChange={(e) => handleInputChange(e, 'contactInformation')}
+                    />
             </div>
 
             <div>
                 <label class="text-white dark:text-gray-200" for="passwordConfirmation">Job Title </label>
-                <input id="passwordConfirmation" type="password"
+                <input id="passwordConfirmation"
                  className="block w-full px-4 py-2 mt-2
                  text-white bg-primary border border-gray-300 rounded-md
-                    focus:outline-none focus:ring" />
+                    focus:outline-none focus:ring" 
+                    type="text"
+                    name="jobTitle"
+                    value={formData.contactInformation.jobTitle}
+                    onChange={(e) => handleInputChange(e, 'contactInformation')}
+                    />
             </div>
             <div>
                 <label class="text-white dark:text-gray-200" for="passwordConfirmation">Email Address</label>
                 <input id="emailAddress" type="email" className="block w-full px-4 py-2 mt-2
                  text-white bg-primary border border-gray-300 rounded-md
-                    focus:outline-none focus:ring" />
+                    focus:outline-none focus:ring" 
+                    name="emailAddress"
+                    value={formData.contactInformation.emailAddress}
+                    onChange={(e) => handleInputChange(e, 'contactInformation')}
+                    />
             </div>
             <div>
                 <label class="text-white dark:text-gray-200" for="passwordConfirmation">Mobile Number</label>
-                <input id="range" type="range" className="block w-full px-4 py-2 mt-2
+                <input id="emailAddress" type="email" className="block w-full px-4 py-2 mt-2
                  text-white bg-primary border border-gray-300 rounded-md
-                    focus:outline-none focus:ring" />
+                    focus:outline-none focus:ring" 
+                    name="mobileNumber"
+                    value={formData.contactInformation.mobileNumber}
+                    onChange={(e) => handleInputChange(e, 'contactInformation')}
+                    />
             </div>
            
           
@@ -239,7 +334,11 @@ const ContactForm = () => {
                     <label for="file-upload" class="relative cursor-pointer
                      rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
                       <span class="">Upload a file</span>
-                      <input id="file-upload" name="file-upload" type="file" class="sr-only" />
+                      <input  type="file"
+            id="file-upload"
+            name="file-upload"
+            className="sr-only"
+            onChange={handleImageUpload} />
                     </label>
                     <p class="pl-1 text-white">or drag and drop</p>
                   </div>
@@ -386,26 +485,24 @@ const ContactForm = () => {
       </div>
     </div>
 
-    <div className="flex flex-row mt-4">
-      <label className="flex items-center mb-2">
-        <input type="checkbox" className="form-checkbox text-primary h-4 w-4" />
-        <span className="ml-2 mr-5 text-sm text-white">Bronze</span>
-      </label>
-      <label className="flex items-center mb-2">
-        <input type="checkbox" className="form-checkbox text-primary h-4 w-4" />
-        <span className="ml-2 mr-5 text-sm text-white">Silver</span>
-      </label>
-      <label className="flex items-center mb-2">
-        <input type="checkbox" className="form-checkbox text-primary h-4 w-4" />
-        <span className="ml-2 mr-5 text-sm text-white">Diamond</span>
-      </label>
-      <label className="flex items-center mb-2">
-        <input type="checkbox" className="form-checkbox  text-gray-400 h-4 w-4" />
-        <span className="ml-2 mr-5 text-sm text-white">Gold</span>
-      </label>
-
-
-    </div>
+    <div className="flex flex-col md:flex-row mt-4">
+  <label className="flex items-center mb-2">
+    <input type="checkbox" className="form-checkbox text-primary h-4 w-4" />
+    <span className="ml-2 mr-5 text-sm text-white">Bronze</span>
+  </label>
+  <label className="flex items-center mb-2">
+    <input type="checkbox" className="form-checkbox text-primary h-4 w-4" />
+    <span className="ml-2 mr-5 text-sm text-white">Silver</span>
+  </label>
+  <label className="flex items-center mb-2">
+    <input type="checkbox" className="form-checkbox text-primary h-4 w-4" />
+    <span className="ml-2 mr-5 text-sm text-white">Diamond</span>
+  </label>
+  <label className="flex items-center mb-2">
+    <input type="checkbox" className="form-checkbox  text-gray-400 h-4 w-4" />
+    <span className="ml-2 mr-5 text-sm text-white">Gold</span>
+  </label>
+</div>
   </div>
 
   <div className="md:col-span-1 lg:col-span-1 flex flex-col justify-between">
@@ -421,6 +518,16 @@ const ContactForm = () => {
 </form>
 
 </section>
+<div className="flex mt-8 justify-end mr-28">
+    <button
+      type="submit"
+      className="bg-white text-black py-2 px-4 rounded-full
+       hover:bg-yellow-500 focus:outline-none focus:ring focus:border-yellow-300"
+    >
+      Save Changes
+    </button>
+  </div>
+</form>
 </>
   )
 }
