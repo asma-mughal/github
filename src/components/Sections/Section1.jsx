@@ -139,7 +139,7 @@ const Section1 = () => {
         <div className="bg-primary pr-5 flex lg:justify-end rounded-md shadow-md
         
         ">
-  <img src={hero} alt="Your Image" className="p-6 w-full h-full" />
+  <img src={hero} alt="Your Image" className="pl-6 pt-6 w-full h-full" />
 </div>
       </div>
   </section>

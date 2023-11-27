@@ -4,7 +4,7 @@ import { UserDataLine2 } from '../../assets/data'
 import PieChart from '../chart/CreateDoughnutData'
 const Section3 = () => {
   return (
-    <section className="flex-grow  pb-6 pr-6 pl-6">
+    <section className="flex-grow p-6">
   <div className="grid grid-cols-1 md:grid-cols-2 gap-12"> 
     {/* Left Div */}
     <div className="bg-secondary-blue p-4 rounded-md shadow-md"> 

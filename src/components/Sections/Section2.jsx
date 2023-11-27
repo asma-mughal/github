@@ -31,7 +31,7 @@ const Section2 = () => {
       <div className="flex items-center">
       <h2 className="text-sm text-white mb-3 mr-2">Applications Received</h2>
     </div>
-    <div className='w-full h-full' style={{
+    <div className='w-full h-full rounded-md shadow-md' style={{
       backgroundColor:'#DDB02D'
     }}>
     <LineChart data={UserDataLine}/>
@@ -41,7 +41,7 @@ const Section2 = () => {
       <div className="flex items-center">
       <h2 className="text-sm text-white mb-3 mr-2">Expressions  Received</h2>
     </div>
-    <div className='w-full h-full' 
+    <div className='w-full h-full rounded-md shadow-md' 
     style={{
       backgroundColor:'#836BCD'
     }}>
