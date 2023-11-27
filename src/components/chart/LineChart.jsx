@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { Line } from "react-chartjs-2";
 import { UserDataLine } from "../../assets/data";
 
-function LineChart({ label , color, data }) {
+function LineChart({ label , data }) {
   const [userData, setUserData] = useState({
     labels: data.map((data) => data.year),
     datasets: [
@@ -67,14 +67,8 @@ function LineChart({ label , color, data }) {
       },
     },
   };
-  return  <div style={{
-    backgroundColor:`${color}`,
-    borderRadius: '10px',
-    width:'100%'
-    
-  }}> <Line data={userData} options={options} />
-  
-  </div>;
+  return  <Line data={userData} options={options} />
+  ;
 }
 
 export default LineChart;

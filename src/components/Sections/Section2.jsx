@@ -9,7 +9,7 @@ const Section2 = () => {
        
     <div className="rounded-md shadow-md ">
   <h2 className="text-sm text-white mb-3 mr-2">Project Views</h2>
- <div className='bg-orange-100 w-full h-full rounded-md shadow-md'
+ <div className=' w-full h-full rounded-md shadow-md'
  style={{
   backgroundColor:'#56A973'
  }}
@@ -21,21 +21,32 @@ const Section2 = () => {
       <div className="flex items-center">
       <h2 className="text-sm text-white mb-3 mr-2">Job Advertisments Views</h2>
     </div>
-    <LineChart color={"#E65D60"} data={UserDataLine}/>
-      
+    <div className='h-full w-full' style={{
+      backgroundColor:"#E65D60"
+    }}>    <LineChart  data={UserDataLine}/>
+    </div>
+
       </div>
       <div className="rounded-md shadow-md">
       <div className="flex items-center">
       <h2 className="text-sm text-white mb-3 mr-2">Applications Received</h2>
     </div>
-    <LineChart color={"#DDB02D"} data={UserDataLine}/>
+    <div className='w-full h-full' style={{
+      backgroundColor:'#DDB02D'
+    }}>
+    <LineChart data={UserDataLine}/>
+    </div>
       </div>
       <div className=" rounded-md shadow-md">
       <div className="flex items-center">
       <h2 className="text-sm text-white mb-3 mr-2">Expressions  Received</h2>
     </div>
-    <LineChart color={"#836BCD"} data={UserDataLine}/> 
-        
+    <div className='w-full h-full' 
+    style={{
+      backgroundColor:'#836BCD'
+    }}>
+    <LineChart  data={UserDataLine}/> 
+    </div>
       </div>
     </div>
   </section>
