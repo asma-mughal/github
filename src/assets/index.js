@@ -1,4 +1,4 @@
-import hero from './Rectangle 1078.svg';
+import hero from './hero.svg';
 import lang from './lang.png';
 import english from './united-states.png';
 import logo1 from './logo 1.svg';

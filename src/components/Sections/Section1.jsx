@@ -136,10 +136,10 @@ const Section1 = () => {
         </div>
         </div>
         </div>
-
-        {/* Right Div */}
-        <div className="bg-primary rounded-md shadow-md">
-  <img src={hero} alt="Your Image" className="w-full pl-6 h-10/12 object-cover" />
+        <div className="bg-primary pr-5 flex lg:justify-end rounded-md shadow-md
+        
+        ">
+  <img src={hero} alt="Your Image" className="p-6 w-full h-full" />
 </div>
       </div>
   </section>

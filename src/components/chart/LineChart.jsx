@@ -70,6 +70,7 @@ function LineChart({ label , color, data }) {
   return  <div style={{
     backgroundColor:`${color}`,
     borderRadius: '10px',
+    width:'100%'
     
   }}> <Line data={userData} options={options} />
   

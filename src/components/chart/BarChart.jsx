@@ -54,8 +54,7 @@ function BarChart({ chartData }) {
       },
     },
   };
-  return <div style={{backgroundColor:'#56A973',  borderRadius: '10px',}}>
-    <Bar data={userData} options={options} /></div>;
+  return <Bar data={userData} options={options} />;
 }
 
 export default BarChart;
