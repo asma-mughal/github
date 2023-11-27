@@ -747,6 +747,13 @@ const ContactForm = () => {
       },
     }));
   };
+  const FormErrors = ({ errors }) => (
+    <div className="mt-4 text-red-500">
+      {Object.entries(errors).map(([field, errorMessage]) => (
+        <p key={field}>{errorMessage}</p>
+      ))}
+    </div>
+  );
   return (
     <>
 
@@ -811,29 +818,29 @@ const ContactForm = () => {
       Save Changes
     </button>
   </div>
-  <div className="mt-4 text-red-500">
-          {formErrors.accountInformation.username && <p>{formErrors.accountInformation.username}</p>}
-          {formErrors.accountInformation.verifiedAccount && <p>{formErrors.accountInformation.verifiedAccount}</p>}
-
-          {formErrors.contactInformation.firstName && <p>{formErrors.contactInformation.firstName}</p>}
-          {formErrors.contactInformation.familyName && <p>{formErrors.contactInformation.familyName}</p>}
-          {formErrors.contactInformation.preferredGreetings && <p>{formErrors.contactInformation.preferredGreetings}</p>}
-          {formErrors.contactInformation.jobTitle && <p>{formErrors.contactInformation.jobTitle}</p>}
-          {formErrors.contactInformation.emailAddress && <p>{formErrors.contactInformation.emailAddress}</p>}
-          {formErrors.contactInformation.mobileNumber && <p>{formErrors.contactInformation.mobileNumber}</p>}
-          {formErrors.contactInformation.image && <p>{formErrors.contactInformation.image}</p>}
-          {formErrors.businessInformation.businessName && <p>{formErrors.businessInformation.businessName}</p>}
-          {formErrors.businessInformation.country && <p>{formErrors.businessInformation.country}</p>}
-          {formErrors.businessInformation.state && <p>{formErrors.businessInformation.state}</p>}
-          {formErrors.businessInformation.postalCode && <p>{formErrors.businessInformation.postalCode}</p>}
-          {formErrors.businessInformation.businessDescription && <p>{formErrors.businessInformation.businessDescription}</p>}
-          {formErrors.businessInformation.subCategory && <p>{formErrors.businessInformation.subCategory}</p>}
-          {formErrors.businessInformation.images && <p>{formErrors.businessInformation.images}</p>}
-          {formErrors.securityInformation.securityPassword && <p>{formErrors.securityInformation.securityPassword}</p>}
-          {formErrors.membershipInformation.bronze && <p>{formErrors.membershipInformation.bronze}</p>}
-          {formErrors.membershipInformation.silver && <p>{formErrors.membershipInformation.silver}</p>}
-          {/* Add more errors for other membership information fields as needed */}
-        </div>
+  <FormErrors errors={{
+      'accountInformation.username': formErrors.accountInformation.username,
+      'accountInformation.verifiedAccount': formErrors.accountInformation.verifiedAccount,
+      'contactInformation.firstName': formErrors.contactInformation.firstName,
+      'contactInformation.familyName': formErrors.contactInformation.familyName,
+      'contactInformation.preferredGreetings': formErrors.contactInformation.preferredGreetings,
+      'contactInformation.jobTitle': formErrors.contactInformation.preferredGreetings,
+      'contactInformation.emailAddress': formErrors.contactInformation.emailAddress,
+      'contactInformation.mobileNumber': formErrors.contactInformation.mobileNumber,
+      'contactInformation.image': formErrors.contactInformation.image,
+      'contactInformation.mobileNumber': formErrors.contactInformation.preferredGreetings,
+      'businessInformation.businessName': formErrors.businessInformation.businessName,
+      'businessInformation.postalCode': formErrors.businessInformation.postalCode,
+      'businessInformation.businessDescription': formErrors.businessInformation.businessDescription,
+      'businessInformation.subCategory': formErrors.businessInformation.subCategory,
+      'businessInformation.images': formErrors.businessInformation.images,
+      'securityInformation.securityPassword': formErrors.securityInformation.securityPassword,
+      'membershipInformation.bronze': formErrors.membershipInformation.bronze,
+      'membershipInformation.silver': formErrors.membershipInformation.silver,
+      'membershipInformation.diamond': formErrors.membershipInformation.diamond,
+      'membershipInformation.gold': formErrors.membershipInformation.gold,
+    }} />
+  
 </form>
 </>
   )
